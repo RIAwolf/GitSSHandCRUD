@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class FileCRUD {
-    public void createFile() {
-        System.out.println("Įveskite failo pavadinimą \u263A");
-        Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
-        System.out.println("Ivestas failo pavadinimas: " + fileName + " \u263A");
 
+
+    private String fileName;
+
+    public void createFile() {
+        Scanner sc = new Scanner(System.in);
         File file = new File(fileName);
         if (file.exists()) {
             System.out.println("Toks failas egzistuoja \u263A");
@@ -34,11 +34,8 @@ public class FileCRUD {
     }
 
     public void updateFile() {
-        System.out.println("Iveskite failo pavadinima");
         Scanner sc = new Scanner(System.in);
-        String failoVardas = sc.nextLine();
-        File file = new File(failoVardas);
-
+        File file = new File(fileName);
         if (file.exists()) {
             System.out.println("Toks failas egzistuoja");
             System.out.println("Iveskite teksta ir spauskite enter");
@@ -62,11 +59,7 @@ public class FileCRUD {
     }
 
     public void readFile() {
-        System.out.println("Iveskite failo pavadinima");
-        Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
         File file = new File(fileName);
-
         if (file.exists()) {
             try {
                 Scanner fileScanner = new Scanner(file);
@@ -82,17 +75,22 @@ public class FileCRUD {
     }
 
     public void deleteFile() {
-        System.out.println("Įveskite failo pavadinimą trinimui");
         Scanner sc = new Scanner(System.in);
-        String fileName = sc.nextLine();
         File file = new File(fileName);
-        if(file.exists()){
+        if (file.exists()) {
             System.out.println("Toks failas egzistuoja, ar tikrai norite trinti? y/N");
             String pasirinkimas = sc.nextLine();
-            if(pasirinkimas.toLowerCase().equals("y")){
+            if (pasirinkimas.toLowerCase().equals("y")) {
                 file.delete();
                 System.out.println("Failas sėkmingai ištrintas");
             }
         }
+    }
+
+    public void requestFileName() {
+        System.out.println("Iveskite failo pavadinima");
+        Scanner sc = new Scanner(System.in);
+        fileName = sc.nextLine();
+
     }
 }
